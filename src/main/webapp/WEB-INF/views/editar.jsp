@@ -14,7 +14,7 @@
     <body>
         <h1>Editar Cliente</h1>
         <span>${mensaje}</span>
-        <form method="POST" action="cliente/editar" 
+        <form method="POST" action="${pageContext.servletContext.contextPath}/cliente/editar" 
               modelAttribute="cliente">
             <label >Codigo Cliente </label>
             <input type="text" name="id" value="${cliente.id}">          

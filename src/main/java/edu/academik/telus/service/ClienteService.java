@@ -15,8 +15,7 @@ public class ClienteService {
 
     public List<Cliente> clienteList = new ArrayList<>();
 
-    public boolean agregarCliente(Cliente cliente) {
-        
+    public boolean agregarCliente(Cliente cliente) {        
         boolean existe = clienteList.stream().anyMatch(p -> p.equals(cliente));
         if (!existe) {
             clienteList.add(cliente);
@@ -24,8 +23,7 @@ public class ClienteService {
         return !existe;
     }
     
-    public Cliente buscarCliente(String id) {
-        
+    public Cliente buscarCliente(String id) {        
         for (Cliente p : clienteList){
             if (p.getId().equalsIgnoreCase(id)){            
                 return p;
@@ -34,30 +32,26 @@ public class ClienteService {
         return null;
     }
     
-    public boolean editarCliente(Cliente cliente) {
+    public boolean editarCliente(Cliente cliente) {        
         boolean existe = clienteList.stream().anyMatch(p -> p.equals(cliente));
-        if (!existe) {
-            clienteList.add(cliente);
+        if (existe) {
+            clienteList.set(0,cliente);
+        }
+        return existe;
+    }
+
+
+
+
+    
+    public boolean delete(String id){
+        boolean existe = clienteList.stream().anyMatch(p -> p.equals(id));
+        if (existe) {
+            clienteList.remove(0);
+//            clienteList.remove(id);
+        }else{
+                    clienteList.remove(0);
         }
         return !existe;
-    }
-    
-
-/**    public static Cliente buscarCliente(int id) {
-        
-        for (Cliente p : clienteList){
-            if (p.getId()==id){            
-                return p;
-            }
-        }
-        return null;
-    }
-**/
-    
-    public boolean delete(String codigo){
-        return
-
-        clienteList.remove(codigo);     
-
     }
 }

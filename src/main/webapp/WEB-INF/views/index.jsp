@@ -22,6 +22,7 @@
                 <th>Nombre </th>
                 <th>Direccion </th>
                 <th>** update **</th>
+                <th>status</th>
             </tr>
         </thead>
         <tbody>
@@ -33,7 +34,9 @@
                 <td>${cliente.direccion}</td>
                 <td>
                     <a href="cliente/id/${cliente.id}">Editar</a>
+                    <a href="cliente/eliminar/${cliente.id}">Eliminar</a>
                 </td>
+                <td></td>
             </tr>
         </c:forEach>    
         </tbody>

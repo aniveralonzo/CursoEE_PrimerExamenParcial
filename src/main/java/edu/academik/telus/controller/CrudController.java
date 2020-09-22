@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 
 
@@ -53,28 +54,30 @@ public class CrudController {
 
      
     @PostMapping("/cliente/editar")
-    public String edit(Model model, @ModelAttribute("cliente") Cliente cliente) { 
+    public String edit(Model model, @ModelAttribute("cliente") Cliente cliente) {
+        
         boolean editado = clienteService.editarCliente(cliente);
         if (editado) {
             model.addAttribute("cliente", cliente);
-            model.addAttribute("mensaje", "Cliente agregado!!!");
-        } else {
-            model.addAttribute("mensaje", "Cliente ya existe!!");
+            model.addAttribute("mensaje", "ACTUALIZADO!!!");
         }
-        return "editar";
-    
+        return "editar";  
     }
     
   
     
     
-/**    @GetMapping("/cliente/eliminar")
-        public String delete(Model model, @PathVariable("codigo") String codigo) {        
-        var cliente = ClienteService.buscarCliente(codigo);                
-        model.addAttribute("cliente", clienteList);
-        return "modificar";
+    @GetMapping("/cliente/eliminar")
+        public String delete( String id) {        
+        //    model.addAttribute(clienteService.delete(id));
+        clienteService.delete(id);                
+     //   model.addAttribute(cliente);
+        return "index";
     }
-**/
+
+        
+        
+
     
 /**    @PostMapping("/cliente/eliminar")
     public String eliminar(Model model, @PathVariable("codigo") String codigo){
