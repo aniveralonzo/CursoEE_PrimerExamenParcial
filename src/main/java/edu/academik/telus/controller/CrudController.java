@@ -60,7 +60,7 @@ public class CrudController {
         boolean editado = clienteService.editarCliente(cliente);
         if (editado) {
             model.addAttribute("cliente", cliente);
-            model.addAttribute("mensaje", "ACTUALIZADO!!! ->borre el registro anterior");
+            model.addAttribute("mensaje", "ACTUALIZADO!!!");
         }
         return "editar";  
     }
