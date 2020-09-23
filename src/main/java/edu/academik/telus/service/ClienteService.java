@@ -14,6 +14,15 @@ import org.springframework.stereotype.Service;
 public class ClienteService {
 
     public List<Cliente> clienteList = new ArrayList<>();
+    
+    public void setClientes(List<Cliente> clientes){
+        this.clienteList=clientes;
+    }
+    
+    public List<Cliente>getClientes(){
+        return clienteList;
+    
+    }
 
     public boolean agregarCliente(Cliente cliente) {        
         boolean existe = clienteList.stream().anyMatch(p -> p.equals(cliente));
@@ -35,7 +44,7 @@ public class ClienteService {
     public boolean editarCliente(Cliente cliente) {        
         boolean existe = clienteList.stream().anyMatch(p -> p.equals(cliente));
         if (existe) {
-            clienteList.set(0,cliente);
+            clienteList.add(cliente);
         }
         return existe;
     }
@@ -44,14 +53,11 @@ public class ClienteService {
 
 
     
-    public boolean delete(String id){
-        boolean existe = clienteList.stream().anyMatch(p -> p.equals(id));
+    public boolean delete(Cliente cliente){
+        boolean existe = clienteList.stream().anyMatch(p -> p.equals(cliente));
         if (existe) {
             clienteList.remove(0);
-//            clienteList.remove(id);
-        }else{
-                    clienteList.remove(0);
         }
-        return !existe;
+        return existe;
     }
 }

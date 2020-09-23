@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 
 
@@ -59,30 +60,17 @@ public class CrudController {
         boolean editado = clienteService.editarCliente(cliente);
         if (editado) {
             model.addAttribute("cliente", cliente);
-            model.addAttribute("mensaje", "ACTUALIZADO!!!");
+            model.addAttribute("mensaje", "ACTUALIZADO!!! ->borre el registro anterior");
         }
         return "editar";  
     }
     
-  
     
-    
-    @GetMapping("/cliente/eliminar")
-        public String delete( String id) {        
-        //    model.addAttribute(clienteService.delete(id));
-        clienteService.delete(id);                
-     //   model.addAttribute(cliente);
-        return "index";
+    @RequestMapping("/cliente/eliminar/{id}")
+    public String getDelete(Model model, @PathVariable("id") String id) {        
+        clienteService.getClientes().removeIf(p -> p.getId().equals(id));
+        model.addAttribute("mensaje", "Eliminado !!!");
+        return "redirect:/index";
     }
-
-        
-        
-
-    
-/**    @PostMapping("/cliente/eliminar")
-    public String eliminar(Model model, @PathVariable("codigo") String codigo){
-        var cliente = ClienteService.delete(codigo);
-        return "index";
-        }**/
-}    
+}
 
