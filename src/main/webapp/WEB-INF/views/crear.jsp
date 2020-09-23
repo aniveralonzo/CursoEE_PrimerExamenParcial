@@ -15,7 +15,7 @@
         <body>
         <h1>Crear Cliente</h1>
         <span>${mensaje}</span>
-        <form method="POST" action="cliente/crear" 
+        <form method="POST" action="${pageContext.servletContext.contextPath}/cliente/crear" 
               modelAttribute="cliente">
             <label >Codigo Cliente </label>
             <input type="text" name="id">
